@@ -23,12 +23,11 @@
                 redirectUri: 'https://asolvi-customers-app.herokuapp.com/',
                 scope: 'openid profile',
             });
-            // var hash = window.location.hash;
-            // if (hash === '') {
-            //     auth0.authorize();
-            //     return
-            // }
-            auth0.authorize();
+            var hash = window.location.hash;
+            if (hash === '') {
+                auth0.authorize();
+                return
+            }
             auth0.parseHash(handleParseHash);
             function handleParseHash(err, authResult) {
                 var accessToken;
