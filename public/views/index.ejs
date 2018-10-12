@@ -27,6 +27,7 @@
         (function () {
             'use strict';
             const ENDPOINT = 'https://asolvi-customers-api.herokuapp.com';
+
             var auth0 = new window.auth0.WebAuth({
                 clientID: 'OPEBMU2ClhWLFYo7JWDXzS0S3GzM9Oax',
                 domain: 'razalyalhafiz.au.auth0.com',
@@ -35,50 +36,58 @@
                 redirectUri: 'https://asolvi-customers-app.herokuapp.com',
                 scope: 'openid profile',
             });
-            var hash = window.location.hash;
+
+            var hash = location.hash;
             if (hash === '') {
                 auth0.authorize();
                 return
             }
             auth0.parseHash(handleParseHash);
+
             function handleParseHash(err, authResult) {
                 var accessToken;
                 var idToken;
                 if (authResult && authResult.accessToken && authResult.idToken) {
                     accessToken = authResult.accessToken;
                     idToken = authResult.idToken;
-                    window.console.log(idToken);
+                    console.log(idToken);
                     auth0.client.userInfo(accessToken, handleUserInfo);
                     enableButton();
+                    
                     function handleUserInfo(userErr, user) {
                         if (userErr) {
                             return;
                         }
-                        window.console.log(user);
+                        console.log(user);
                     }
                 } else {
-                    window.console.log('ERROR');
+                    console.log('ERROR');
                 }
+
                 function enableButton() {
                     var buttonEl = document.getElementById('get');
                     buttonEl.addEventListener('click', handleClick);
+                    
                     function handleClick() {
-                        window.fetch(ENDPOINT, {
+                        fetch(ENDPOINT, {
                             headers: {
                                 Authorization: 'Bearer ' + accessToken
                             },
                         })
-                            .then(handleSuccess)
-                            .then(handleJSON)
-                            .catch(handleError);
+                        .then(handleSuccess)
+                        .then(handleJSON)
+                        .catch(handleError);
+
                         function handleSuccess(response) {
                             return response.json();
                         }
+
                         function handleJSON(json) {
-                            window.console.log(json);
+                            console.log(json);
                         }
+
                         function handleError(err) {
-                            window.console.log(err);
+                            console.log(err);
                         }
                     }
                 }
