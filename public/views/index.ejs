@@ -14,13 +14,13 @@
     <script>
         (function () {
             'use strict';
-            var ENDPOINT = 'http://localhost:8080';
+            var ENDPOINT = 'https://asolvi-customers-api.herokuapp.com/';
             var auth0 = new window.auth0.WebAuth({
                 clientID: 'mXOqTlwyy2wrxfKZsTe64GIx4jZTfJLT',
                 domain: 'razalyalhafiz.au.auth0.com',
                 responseType: 'token id_token',
-                audience: 'http://localhost:8080',
-                redirectUri: 'http://localhost:3000',
+                audience: 'https://asolvi-customers-api.herokuapp.com/',
+                redirectUri: 'https://asolvi-customers-app.herokuapp.com/',
                 scope: 'openid profile',
             });
             var hash = window.location.hash;
