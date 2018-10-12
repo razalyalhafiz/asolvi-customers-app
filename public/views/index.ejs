@@ -24,6 +24,7 @@
                 scope: 'openid profile',
             });
             var hash = window.location.hash;
+            window.console.log(hash);
             if (hash === '') {
                 auth0.authorize();
                 return
