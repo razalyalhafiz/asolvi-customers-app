@@ -1,6 +1,3 @@
 {
-  "CLIENT_ID": "OPEBMU2ClhWLFYo7JWDXzS0S3GzM9Oax",
-  "API_AUDIENCE": "https://asolvi-customers-api.herokuapp.com",
-  "AUTH0_DOMAIN": "https://razalyalhafiz.au.auth0.com",
-  "REDIRECT_URI": "https://asolvi-customers-app.herokuapp.com"
+  "PORT": 3000
 }

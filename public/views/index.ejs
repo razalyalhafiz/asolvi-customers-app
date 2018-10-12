@@ -3,29 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Asolvi Customers App</title>
+    <title>Hello Auth0</title>
 </head>
 
 <body>
     <button id="get">Get</button>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.0.0/polyfill.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"></script>
     <script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>
     <script>
         (function () {
             'use strict';
-            const config = require("./config.json");
-            const CLIENT_ID = config.CLIENT_ID;
-            const API_AUDIENCE = config.API_AUDIENCE;
-            const AUTH0_DOMAIN = config.AUTH0_DOMAIN;
-            const REDIRECT_URI = config.REDIRECT_URI;
-
+            const ENDPOINT = 'https://asolvi-customers-api.herokuapp.com';
             var auth0 = new window.auth0.WebAuth({
-                clientID: CLIENT_ID,
-                domain: AUTH0_DOMAIN,
+                clientID: 'OPEBMU2ClhWLFYo7JWDXzS0S3GzM9Oax',
+                domain: 'razalyalhafiz.au.auth0.com',
                 responseType: 'token id_token',
-                audience: API_AUDIENCE,
-                redirectUri: REDIRECT_URI,
+                audience: 'https://asolvi-customers-api.herokuapp.com',
+                redirectUri: 'https://asolvi-customers-app.herokuapp.com',
                 scope: 'openid profile',
             });
             var hash = window.location.hash;
@@ -56,7 +53,7 @@
                     var buttonEl = document.getElementById('get');
                     buttonEl.addEventListener('click', handleClick);
                     function handleClick() {
-                        window.fetch(apiIdentifier, {
+                        window.fetch(ENDPOINT, {
                             headers: {
                                 Authorization: 'Bearer ' + accessToken
                             },
