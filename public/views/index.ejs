@@ -1,19 +1,29 @@
+<!-- views/pages/index.ejs -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Hello Auth0</title>
+    <% include ../partials/head %>
 </head>
 
-<body>
-    <button id="get">Get</button>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.0.0/polyfill.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"></script>
-    <script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>
-    <script>
+<body class="container">
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+    
+    <main>
+        <div class="jumbotron">
+            <h2>List of customers</h2>
+        </div>
+    </main>
+    
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+    <%
         (function () {
             'use strict';
             const ENDPOINT = 'https://asolvi-customers-api.herokuapp.com';
@@ -74,7 +84,7 @@
                 }
             }
         })();
-    </script>
+    %>
 </body>
 
 </html>
