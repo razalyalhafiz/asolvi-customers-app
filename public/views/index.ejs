@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Hello Auth0</title>
+    <title>Asolvi Customers App</title>
 </head>
 
 <body>
@@ -14,13 +14,18 @@
     <script>
         (function () {
             'use strict';
-            var ENDPOINT = 'https://asolvi-customers-api.herokuapp.com';
+            const config = require("./config.json");
+            const CLIENT_ID = config.CLIENT_ID;
+            const API_AUDIENCE = config.API_AUDIENCE;
+            const AUTH0_DOMAIN = config.AUTH0_DOMAIN;
+            const REDIRECT_URI = config.REDIRECT_URI;
+
             var auth0 = new window.auth0.WebAuth({
-                clientID: 'OPEBMU2ClhWLFYo7JWDXzS0S3GzM9Oax',
-                domain: 'razalyalhafiz.au.auth0.com',
+                clientID: CLIENT_ID,
+                domain: AUTH0_DOMAIN,
                 responseType: 'token id_token',
-                audience: 'https://asolvi-customers-api.herokuapp.com',
-                redirectUri: 'https://asolvi-customers-app.herokuapp.com',
+                audience: API_AUDIENCE,
+                redirectUri: REDIRECT_URI,
                 scope: 'openid profile',
             });
             var hash = window.location.hash;
@@ -51,7 +56,7 @@
                     var buttonEl = document.getElementById('get');
                     buttonEl.addEventListener('click', handleClick);
                     function handleClick() {
-                        window.fetch(ENDPOINT, {
+                        window.fetch(apiIdentifier, {
                             headers: {
                                 Authorization: 'Bearer ' + accessToken
                             },
