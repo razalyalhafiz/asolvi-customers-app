@@ -51,12 +51,12 @@ window.addEventListener('load', function() {
         $("#tblCustomers").DataTable({
           data: response,
           columns: [
-            { title: "Id" },
-            { title: "Name" },
-            { title: "Status" },
-            { title: "Avatar" }
+            { data: "id" },
+            { data: "name" },
+            { data: "status" },
+            { data: "avatar" }
           ]
-        })
+        });
       })
       .catch(error => console.error('Error:', error));
 
