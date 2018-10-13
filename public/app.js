@@ -79,10 +79,7 @@ window.addEventListener('ready', function() {
         alert(
           'Error: ' + err.error + '. Check the console for further details.'
         );
-      } else {
-        var accessToken = localStorage.getItem('access_token');
-        getCustomers(accessToken);
-      }
+      } 
       displayButtons();
     });
   }
