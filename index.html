@@ -1,75 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Hello Auth0</title>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <button id="get">Get</button>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.0.0/polyfill.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"></script>
-  <script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script> 
-  <script>
-    (function () {
-      'use strict';
-      var ENDPOINT = 'http://localhost:8080';
-      var auth0 = new window.auth0.WebAuth({
-        clientID: 'mXOqTlwyy2wrxfKZsTe64GIx4jZTfJLT',
-        domain: 'razalyalhafiz.au.auth0.com',
-        responseType: 'token id_token',
-        audience: 'http://localhost:8080',
-        redirectUri: 'http://localhost:3000',
-        scope: 'openid profile',
-      });
-      var hash = window.location.hash;
-      if (hash === '') {
-        auth0.authorize();
-        return
-      }
-      auth0.parseHash(handleParseHash);
-      function handleParseHash(err, authResult) {
-        var accessToken;
-        var idToken;
-        if (authResult && authResult.accessToken && authResult.idToken) {
-          accessToken = authResult.accessToken;
-          idToken = authResult.idToken;
-          window.console.log(idToken);
-          auth0.client.userInfo(accessToken, handleUserInfo);
-          enableButton();
-          function handleUserInfo(userErr, user) {
-            if (userErr) {
-              return;
-            }
-            window.console.log(user);
-          }
-        } else {
-          window.console.log('ERROR');
-        }
-        function enableButton() {
-          var buttonEl = document.getElementById('get');
-          buttonEl.addEventListener('click', handleClick);
-          function handleClick() {
-            window.fetch(ENDPOINT, {
-              headers: {
-                Authorization: 'Bearer ' + accessToken
-              },
-            })
-              .then(handleSuccess)
-              .then(handleJSON)
-              .catch(handleError);
-            function handleSuccess(response) {
-              return response.json();
-            }
-            function handleJSON(json) {
-              window.console.log(json);
-            }
-            function handleError(err) {
-              window.console.log(err);
-            }
-          }
-        } 
-      }
-    })();
-  </script>
+
+  <div id="loading">
+    <img src="assets/loading.svg" alt="Loading spinner">
+  </div>
+
+  <div class="content">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Auth0 - JavaScript</a>
+
+          <button id="btn-home-view" class="btn btn-primary btn-margin">
+              Home
+          </button>
+
+          <button id="qsLoginBtn" class="btn btn-primary btn-margin">
+              Log In
+          </button>
+
+          <button id="qsLogoutBtn" class="btn btn-primary btn-margin">
+              Log Out
+          </button>
+
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <!-- home view -->
+      <div id="home-view">
+        <h4></h4>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="node_modules/auth0-js/build/auth0.js"></script>
+  <!-- <script src="auth0-variables.js"></script> -->
+  <script src="app.js"></script>
 </body>
 </html>
