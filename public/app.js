@@ -31,34 +31,27 @@ window.addEventListener('load', function() {
     var expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     );
-    var accessToken = authResult.accessToken;
-    console.log(`Access token ori: ${accessToken}`);
 
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
   }
 
-  function getCustomers() {
-    const ENDPOINT = "https://asolvi-customers-api.herokuapp.com";
-    var accessToken = localStorage.getItem("access_token");
+  function getCustomers(accessToken) {
+    const ENDPOINT = "https://asolvi-customers-api.herokuapp.com";  
 
-    fetch(ENDPOINT, {
-      headers: {
-        Authorization: 'Bearer ' + accessToken
-      },
-    })
-    .then(handleSuccess)
-    .catch(handleError);
+    fetch(ENDPOINT, { headers: { Authorization: "Bearer " + accessToken } })
+      .then(handleSuccess)
+      .catch(handleError)
 
     function handleSuccess(response) {
       // var customers = response.json();
-      console.log(`Access token: ${accessToken}`);
-      console.log(response);
+      console.log(`Access token: ${accessToken}`)
+      console.log(response)
     }
 
     function handleError(err) {
-      console.log(err);
+      console.log(err)
     }
   }
 
@@ -84,7 +77,7 @@ window.addEventListener('load', function() {
         window.location.hash = '';
         loginBtn.style.display = "none";
         setSession(authResult);
-        
+        getCustomers(authResult.accessToken);
       } else if (err) {
         console.log(err);
         alert(
@@ -100,7 +93,6 @@ window.addEventListener('load', function() {
       loginBtn.style.display = 'none';
       logoutBtn.style.display = 'inline-block';
       loginStatus.innerHTML = 'You are logged in!';
-      getCustomers();
     } else {
       loginBtn.style.display = 'inline-block';
       logoutBtn.style.display = 'none';
