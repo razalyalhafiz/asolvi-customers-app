@@ -40,13 +40,23 @@ window.addEventListener('load', function() {
   function getCustomers(accessToken) {
     if (!accessToken)
       return;
-      
+
     const ENDPOINT = `${API_AUDIENCE}/customers`;  
 
     fetch(ENDPOINT, { headers: { Authorization: "Bearer " + accessToken } })
       .then(res => res.json())
       .then(response => {
         console.log('Success:', JSON.stringify(response));
+
+        $("#tblCustomers").DataTable({
+          data: response,
+          columns: [
+            { title: "Id" },
+            { title: "Name" },
+            { title: "Status" },
+            { title: "Avatar" }
+          ]
+        })
       })
       .catch(error => console.error('Error:', error));
 
@@ -70,7 +80,6 @@ window.addEventListener('load', function() {
 
   function handleAuthentication() {
     webAuth.parseHash(function(err, authResult) {
-      console.log(`Auth Result: ${authResult}`);
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         loginBtn.style.display = "none";
