@@ -1,4 +1,4 @@
-window.addEventListener('load', function() {
+window.addEventListener('ready', function() {
   var content = document.querySelector('.content');
   var loadingSpinner = document.getElementById('loading');
   content.style.display = 'block';
@@ -66,17 +66,12 @@ window.addEventListener('load', function() {
   }
 
   function handleAuthentication() {
-    var hash = location.hash;
-    if (hash === '') {
-      webAuth.authorize();
-      return;
-    }
     webAuth.parseHash(function(err, authResult) {
+      console.log(`Auth Result: ${authResult}`);
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         loginBtn.style.display = "none";
 
-        console.log(authResult);
         setSession(authResult);
         getCustomers(authResult.accessToken);
       } else if (err) {
@@ -84,6 +79,9 @@ window.addEventListener('load', function() {
         alert(
           'Error: ' + err.error + '. Check the console for further details.'
         );
+      } else {
+        var accessToken = localStorage.getItem('access_token');
+        getCustomers(accessToken);
       }
       displayButtons();
     });
