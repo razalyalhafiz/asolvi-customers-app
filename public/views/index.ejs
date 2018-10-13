@@ -55,7 +55,7 @@
                         accessToken = authResult.accessToken;
                         idToken = authResult.idToken;
 
-                        info.appendChild(document.createTextNode(`Access Token: ${accessToken}`));
+                        info.innerHtml(document.createTextNode(`Access Token: ${accessToken}`));
                         info.appendChild(document.createTextNode(`ID Token: ${idToken}`));
 
                         auth0.client.userInfo(accessToken, handleUserInfo);
