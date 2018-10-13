@@ -31,6 +31,9 @@ window.addEventListener('load', function() {
     var expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     );
+    var accessToken = authResult.accessToken;
+    console.log(`Access token ori: ${accessToken}`);
+
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
