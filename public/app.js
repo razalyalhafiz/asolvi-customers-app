@@ -8,7 +8,7 @@ window.addEventListener('load', function() {
     domain: AUTH0_DOMAIN,
     clientID: AUTH0_CLIENT_ID,
     redirectUri: AUTH0_CALLBACK_URL,
-    audience: "https://asolvi-customers-api.herokuapp.com",
+    audience: API_AUDIENCE,
     responseType: "token id_token",
     scope: "openid"
   })
@@ -38,16 +38,16 @@ window.addEventListener('load', function() {
   }
 
   function getCustomers(accessToken) {
-    const ENDPOINT = "https://asolvi-customers-api.herokuapp.com";  
+    const ENDPOINT = API_AUDIENCE;  
 
     fetch(ENDPOINT, { headers: { Authorization: "Bearer " + accessToken } })
       .then(handleSuccess)
       .catch(handleError)
 
     function handleSuccess(response) {
-      // var customers = response.json();
-      console.log(`Access token: ${accessToken}`)
-      console.log(response)
+      var customers = response.json();
+      console.log(`Access token: ${accessToken}`);
+      console.log(customers);
     }
 
     function handleError(err) {
