@@ -1,4 +1,4 @@
-window.addEventListener('ready', function() {
+window.addEventListener('load', function() {
   var content = document.querySelector('.content');
   var loadingSpinner = document.getElementById('loading');
   content.style.display = 'block';
@@ -79,7 +79,10 @@ window.addEventListener('ready', function() {
         alert(
           'Error: ' + err.error + '. Check the console for further details.'
         );
-      } 
+      } else {
+        var accessToken = localStorage.getItem('access_token');
+        getCustomers(accessToken);
+      }
       displayButtons();
     });
   }
