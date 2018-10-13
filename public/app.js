@@ -8,8 +8,9 @@ window.addEventListener('load', function() {
     domain: AUTH0_DOMAIN,
     clientID: AUTH0_CLIENT_ID,
     redirectUri: AUTH0_CALLBACK_URL,
+    audience: "https://asolvi-customers-api.herokuapp.com",
     responseType: "token id_token",
-    scope: "openid profile"
+    scope: "openid"
   })
 
   var loginStatus = document.querySelector('.container h4');
