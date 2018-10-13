@@ -76,15 +76,11 @@
                             },
                         })
                         .then(handleSuccess)
-                        .then(handleJSON)
                         .catch(handleError);
 
                         function handleSuccess(response) {
-                            return response.json();
-                        }
-
-                        function handleJSON(json) {
-                            res.render('customers', json);
+                            var customers = response.json();
+                            response.render('customers', customers);
                             console.log(json);
                         }
 
