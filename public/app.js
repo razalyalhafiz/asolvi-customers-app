@@ -15,17 +15,10 @@ window.addEventListener('load', function() {
 
   var loginStatus = document.querySelector('.container h4');
   var loginView = document.getElementById('login-view');
-  var homeView = document.getElementById('home-view');
 
   // buttons and event listeners
-  var homeViewBtn = document.getElementById('btn-home-view');
   var loginBtn = document.getElementById('qsLoginBtn');
   var logoutBtn = document.getElementById('qsLogoutBtn');
-
-  homeViewBtn.addEventListener('click', function() {
-    homeView.style.display = 'inline-block';
-    loginView.style.display = 'none';
-  });
 
   loginBtn.addEventListener('click', function(e) {
     e.preventDefault();
@@ -66,9 +59,7 @@ window.addEventListener('load', function() {
         window.location.hash = '';
         setSession(authResult);
         loginBtn.style.display = 'none';
-        homeView.style.display = 'inline-block';
       } else if (err) {
-        homeView.style.display = 'inline-block';
         console.log(err);
         alert(
           'Error: ' + err.error + '. Check the console for further details.'
