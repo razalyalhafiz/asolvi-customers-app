@@ -39,14 +39,14 @@ window.addEventListener('load', function() {
   function getCustomers() {
     const ENDPOINT = "https://asolvi-customers-api.herokuapp.com";
     var accessToken = localStorage.getItem("access_token");
-    
+
     fetch(ENDPOINT, {
       headers: {
         Authorization: 'Bearer ' + accessToken
       },
     })
-      .then(handleSuccess)
-      .catch(handleError);
+    .then(handleSuccess)
+    .catch(handleError);
 
     function handleSuccess(response) {
       var customers = response.json();
@@ -80,7 +80,7 @@ window.addEventListener('load', function() {
         window.location.hash = '';
         loginBtn.style.display = "none";
         setSession(authResult);
-        getCustomers();
+        
       } else if (err) {
         console.log(err);
         alert(
@@ -96,6 +96,7 @@ window.addEventListener('load', function() {
       loginBtn.style.display = 'none';
       logoutBtn.style.display = 'inline-block';
       loginStatus.innerHTML = 'You are logged in!';
+      getCustomers();
     } else {
       loginBtn.style.display = 'inline-block';
       logoutBtn.style.display = 'none';
