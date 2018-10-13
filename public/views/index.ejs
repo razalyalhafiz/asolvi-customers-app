@@ -30,7 +30,7 @@
 
             var buttonEl = document.getElementById('get');
             buttonEl.addEventListener('click', handleClick);
-            
+
             function handleClick() {
                 var auth0 = new window.auth0.WebAuth({
                     clientID: 'OPEBMU2ClhWLFYo7JWDXzS0S3GzM9Oax',
@@ -40,12 +40,12 @@
                     redirectUri: 'https://asolvi-customers-app.herokuapp.com',
                     scope: 'openid profile',
                 });
+
                 var hash = location.hash;
                 if (hash === '') {
                     auth0.authorize();
                     return
                 }
-                
                 auth0.parseHash(handleParseHash);
                 function handleParseHash(err, authResult) {
                     var accessToken;
@@ -54,7 +54,7 @@
                         accessToken = authResult.accessToken;
                         idToken = authResult.idToken;
                         console.log(idToken);
-                        
+
                         auth0.client.userInfo(accessToken, handleUserInfo);
                         function handleUserInfo(userErr, user) {
                             if (userErr) {
@@ -65,8 +65,8 @@
                     } else {
                         console.log('ERROR');
                     }
-                } 
-
+                }
+                
                 fetch(ENDPOINT, {
                     headers: {
                         Authorization: 'Bearer ' + accessToken
@@ -83,7 +83,7 @@
                 function handleError(err) {
                     console.log(err);
                 }
-            }          
+            }
         })();
     </script>
 </body>
