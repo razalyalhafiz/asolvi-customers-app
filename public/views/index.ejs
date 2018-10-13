@@ -27,12 +27,12 @@
         (function () {
             'use strict';
             const ENDPOINT = 'https://asolvi-customers-api.herokuapp.com';
-            
+
             var buttonEl = document.getElementById('get');
             buttonEl.addEventListener('click', handleClick);
             
             function handleClick() {
-                var auth0 = new auth0.WebAuth({
+                var auth0 = new window.auth0.WebAuth({
                     clientID: 'OPEBMU2ClhWLFYo7JWDXzS0S3GzM9Oax',
                     domain: 'razalyalhafiz.au.auth0.com',
                     responseType: 'token id_token',
