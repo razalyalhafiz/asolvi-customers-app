@@ -42,20 +42,11 @@ window.addEventListener('load', function() {
 
     fetch(ENDPOINT, { headers: { Authorization: "Bearer " + accessToken } })
       .then(res => res.json())
-      .then(response => console.log('Success:', JSON.stringify(response)))
+      .then(response => {
+        console.log('Success:', JSON.stringify(response));
+      })
       .catch(error => console.error('Error:', error));
-      // .then(handleSuccess)
-      // .catch(handleError)
 
-    function handleSuccess(response) {
-      //var customers = response.json();
-      console.log(`Access token: ${accessToken}`);
-      console.log(response);
-    }
-
-    function handleError(err) {
-      console.log(err)
-    }
   }
 
   function logout() {
@@ -75,6 +66,11 @@ window.addEventListener('load', function() {
   }
 
   function handleAuthentication() {
+    var hash = location.hash;
+    if (hash === '') {
+      webAuth.authorize();
+      return;
+    }
     webAuth.parseHash(function(err, authResult) {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
