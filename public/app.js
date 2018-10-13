@@ -50,7 +50,8 @@ window.addEventListener('load', function() {
 
     function handleSuccess(response) {
       // var customers = response.json();
-      console.log(response)
+      console.log(`Access token: ${accessToken}`);
+      console.log(response);
     }
 
     function handleError(err) {
