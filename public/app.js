@@ -49,8 +49,8 @@ window.addEventListener('load', function() {
     .catch(handleError);
 
     function handleSuccess(response) {
-      var customers = response.json();
-      console.log(customers);
+      // var customers = response.json();
+      console.log(response)
     }
 
     function handleError(err) {
