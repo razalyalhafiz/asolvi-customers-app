@@ -9,8 +9,7 @@ window.addEventListener('load', function() {
     clientID: AUTH0_CLIENT_ID,
     redirectUri: AUTH0_CALLBACK_URL,
     responseType: "token id_token",
-    scope: "openid",
-    leeway: 60
+    scope: "openid profile"
   })
 
   var loginStatus = document.querySelector('.container h4');
