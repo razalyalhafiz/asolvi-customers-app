@@ -38,6 +38,9 @@ window.addEventListener('load', function() {
   }
 
   function getCustomers(accessToken) {
+    if (!accessToken)
+      return;
+      
     const ENDPOINT = `${API_AUDIENCE}/customers`;  
 
     fetch(ENDPOINT, { headers: { Authorization: "Bearer " + accessToken } })
