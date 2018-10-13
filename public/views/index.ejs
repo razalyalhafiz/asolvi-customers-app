@@ -52,7 +52,8 @@
                     idToken = authResult.idToken;
                     console.log(idToken);
                     
-                    enableButton();
+                    getCustomers();
+                    //enableButton();
 
                     auth0.client.userInfo(accessToken, handleUserInfo);
                     function handleUserInfo(userErr, user) {
@@ -63,6 +64,26 @@
                     }
                 } else {
                     console.log('ERROR');
+                }
+
+                function getCustomers() {
+                    fetch(ENDPOINT, {
+                            headers: {
+                                Authorization: 'Bearer ' + accessToken
+                            },
+                        })
+                        .then(handleSuccess)
+                        .catch(handleError);
+
+                        function handleSuccess(response) {
+                            var customers = response.json();
+                            response.render('customers', customers);
+                            console.log(json);
+                        }
+
+                        function handleError(err) {
+                            console.log(err);
+                        }
                 }
 
                 function enableButton() {
