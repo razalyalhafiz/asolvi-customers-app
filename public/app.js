@@ -41,13 +41,16 @@ window.addEventListener('load', function() {
     const ENDPOINT = API_AUDIENCE;  
 
     fetch(ENDPOINT, { headers: { Authorization: "Bearer " + accessToken } })
-      .then(handleSuccess)
-      .catch(handleError)
+      .then(res => res.json())
+      .then(response => console.log('Success:', JSON.stringify(response)))
+      .catch(error => console.error('Error:', error));
+      // .then(handleSuccess)
+      // .catch(handleError)
 
     function handleSuccess(response) {
       //var customers = response.json();
       console.log(`Access token: ${accessToken}`);
-      console.log(response.body);
+      console.log(response);
     }
 
     function handleError(err) {
