@@ -58,6 +58,9 @@
                         if (userErr) {
                             return;
                         }
+        
+                        console.log(`Access Token: ${authResult.accessToken}`);
+                        console.log(`ID Token: ${authResult.idToken}`);
                         console.log(user);
                     }
                 } else {
