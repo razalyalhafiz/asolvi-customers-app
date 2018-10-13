@@ -7,7 +7,7 @@ window.addEventListener('load', function() {
   var webAuth = new window.auth0.WebAuth({
     domain: AUTH0_DOMAIN,
     clientID: AUTH0_CLIENT_ID,
-    redirectUri: AUTH0_CALLBACK_URL,
+    redirectUri: `https://${AUTH0_CALLBACK_URL}`,
     responseType: "token id_token",
     scope: "openid",
     leeway: 60
@@ -50,7 +50,7 @@ window.addEventListener('load', function() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
 
-    location.href = `https://${AUTH0_DOMAIN}/v2/logout?returnTo=${AUTH0_CALLBACK_URL}`;
+    location.href = `https://${AUTH0_DOMAIN}/v2/logout?returnTo=https%3A%2F%2F${AUTH0_CALLBACK_URL}`
   }
 
   function isAuthenticated() {
