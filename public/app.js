@@ -36,6 +36,28 @@ window.addEventListener('load', function() {
     localStorage.setItem('expires_at', expiresAt);
   }
 
+  function getCustomers() {
+    const ENDPOINT = "https://asolvi-customers-api.herokuapp.com";
+    var accessToken = localStorage.getItem("access_token");
+    
+    fetch(ENDPOINT, {
+      headers: {
+        Authorization: 'Bearer ' + accessToken
+      },
+    })
+      .then(handleSuccess)
+      .catch(handleError);
+
+    function handleSuccess(response) {
+      var customers = response.json();
+      console.log(customers);
+    }
+
+    function handleError(err) {
+      console.log(err);
+    }
+  }
+
   function logout() {
     // Remove tokens and expiry time from localStorage
     localStorage.removeItem('access_token');
@@ -56,8 +78,9 @@ window.addEventListener('load', function() {
     webAuth.parseHash(function(err, authResult) {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
+        loginBtn.style.display = "none";
         setSession(authResult);
-        loginBtn.style.display = 'none';
+        getCustomers();
       } else if (err) {
         console.log(err);
         alert(
