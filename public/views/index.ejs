@@ -15,8 +15,8 @@
     
     <main>
         <div class="jumbotron">
-            <h2>List of customers</h2>
-        </div>
+            <% include ./partials/customers %>
+        </div>       
     </main>
     
     <footer>
@@ -51,9 +51,10 @@
                     accessToken = authResult.accessToken;
                     idToken = authResult.idToken;
                     console.log(idToken);
-                    auth0.client.userInfo(accessToken, handleUserInfo);
+                    
                     enableButton();
 
+                    auth0.client.userInfo(accessToken, handleUserInfo);
                     function handleUserInfo(userErr, user) {
                         if (userErr) {
                             return;
