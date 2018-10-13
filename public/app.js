@@ -49,8 +49,8 @@ window.addEventListener('load', function() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-    
-    location.href = `https://${AUTH0_DOMAIN}/v2/logout`;
+
+    location.href = `https://${AUTH0_DOMAIN}/v2/logout?returnTo=${AUTH0_CALLBACK_URL}`;
   }
 
   function isAuthenticated() {
