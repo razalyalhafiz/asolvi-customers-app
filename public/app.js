@@ -14,7 +14,6 @@ window.addEventListener('load', function() {
   })
 
   var loginStatus = document.querySelector('.container h4');
-  var loginView = document.getElementById('login-view');
 
   // buttons and event listeners
   var loginBtn = document.getElementById('qsLoginBtn');
