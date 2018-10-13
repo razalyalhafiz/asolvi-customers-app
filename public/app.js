@@ -51,10 +51,10 @@ window.addEventListener('load', function() {
         $("#tblCustomers").DataTable({
           data: response,
           columns: [
-            { data: "id" },
-            { data: "name" },
-            { data: "status" },
-            { data: "avatar" }
+            { data: "id" , title: "ID" },
+            { data: "name", title: "Name" },
+            { data: "status", title: "Status" },
+            { data: "avatar", title: "Avatar" },
           ]
         });
       })
