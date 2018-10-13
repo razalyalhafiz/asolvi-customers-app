@@ -50,7 +50,7 @@ window.addEventListener('load', function() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
 
-    location.href = `https://${AUTH0_DOMAIN}/v2/logout?returnTo=http%3A%2F%2Fwww.google.com`;
+    location.href = `https://${AUTH0_DOMAIN}/v2/logout?returnTo=https%3A%2F%2F${AUTH0_CALLBACK_URL}`;
   }
 
   function isAuthenticated() {
