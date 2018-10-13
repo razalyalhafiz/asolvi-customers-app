@@ -27,22 +27,43 @@
         (function () {
             'use strict';
             const ENDPOINT = 'https://asolvi-customers-api.herokuapp.com';
+            
+            var buttonEl = document.getElementById('get');
+            buttonEl.addEventListener('click', handleClick);
+            
+            function handleClick() {
+                var auth0 = new auth0.WebAuth({
+                    clientID: 'OPEBMU2ClhWLFYo7JWDXzS0S3GzM9Oax',
+                    domain: 'razalyalhafiz.au.auth0.com',
+                    responseType: 'token id_token',
+                    audience: 'https://asolvi-customers-api.herokuapp.com',
+                    redirectUri: 'https://asolvi-customers-app.herokuapp.com',
+                    scope: 'openid profile',
+                });
+                var hash = location.hash;
+                if (hash === '') {
+                    auth0.authorize();
+                    return
+                }
+                auth0.parseHash(handleParseHash);
 
-            var auth0 = new window.auth0.WebAuth({
-                clientID: 'OPEBMU2ClhWLFYo7JWDXzS0S3GzM9Oax',
-                domain: 'razalyalhafiz.au.auth0.com',
-                responseType: 'token id_token',
-                audience: 'https://asolvi-customers-api.herokuapp.com',
-                redirectUri: 'https://asolvi-customers-app.herokuapp.com',
-                scope: 'openid profile',
-            });
+                fetch(ENDPOINT, {
+                    headers: {
+                        Authorization: 'Bearer ' + accessToken
+                    },
+                })
+                .then(handleSuccess)
+                .catch(handleError);
 
-            var hash = location.hash;
-            if (hash === '') {
-                auth0.authorize();
-                return
+                function handleSuccess(response) {
+                    var customers = response.json();
+                    console.log(customers);
+                }
+
+                function handleError(err) {
+                    console.log(err);
+                }
             }
-            auth0.parseHash(handleParseHash);
 
             function handleParseHash(err, authResult) {
                 var accessToken;
@@ -52,9 +73,6 @@
                     idToken = authResult.idToken;
                     console.log(idToken);
                     
-                    getCustomers();
-                    //enableButton();
-
                     auth0.client.userInfo(accessToken, handleUserInfo);
                     function handleUserInfo(userErr, user) {
                         if (userErr) {
@@ -65,52 +83,7 @@
                 } else {
                     console.log('ERROR');
                 }
-
-                function getCustomers() {
-                    fetch(ENDPOINT, {
-                            headers: {
-                                Authorization: 'Bearer ' + accessToken
-                            },
-                        })
-                        .then(handleSuccess)
-                        .catch(handleError);
-
-                        function handleSuccess(response) {
-                            var customers = response.json();
-                            response.render('customers', customers);
-                            console.log(json);
-                        }
-
-                        function handleError(err) {
-                            console.log(err);
-                        }
-                }
-
-                function enableButton() {
-                    var buttonEl = document.getElementById('get');
-                    buttonEl.addEventListener('click', handleClick);
-                    
-                    function handleClick() {
-                        fetch(ENDPOINT, {
-                            headers: {
-                                Authorization: 'Bearer ' + accessToken
-                            },
-                        })
-                        .then(handleSuccess)
-                        .catch(handleError);
-
-                        function handleSuccess(response) {
-                            var customers = response.json();
-                            response.render('customers', customers);
-                            console.log(json);
-                        }
-
-                        function handleError(err) {
-                            console.log(err);
-                        }
-                    }
-                }
-            }
+            }           
         })();
     </script>
 </body>
