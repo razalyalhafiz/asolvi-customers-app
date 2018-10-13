@@ -2,19 +2,19 @@
   "name": "custom-login",
   "version": "0.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "serve -p 3000",
+    "start": "node server.js",
     "test": "node test.js"
   },
   "author": "Auth0",
   "license": "MIT",
   "dependencies": {
     "auth0-js": "^9.8.0",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "express": "^4.16.4"
   },
   "devDependencies": {
-    "auth0-quickstarts-tester": "0.1.0",
-    "serve": "^5.2.4"
+    "auth0-quickstarts-tester": "0.1.0"
   }
 }
