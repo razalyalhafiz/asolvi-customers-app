@@ -4,14 +4,14 @@ window.addEventListener('load', function() {
   content.style.display = 'block';
   loadingSpinner.style.display = 'none';
 
-  var webAuth = new auth0.WebAuth({
+  var webAuth = new window.auth0.WebAuth({
     domain: AUTH0_DOMAIN,
     clientID: AUTH0_CLIENT_ID,
     redirectUri: AUTH0_CALLBACK_URL,
-    responseType: 'token id_token',
-    scope: 'openid',
+    responseType: "token id_token",
+    scope: "openid",
     leeway: 60
-  });
+  })
 
   var loginStatus = document.querySelector('.container h4');
   var loginView = document.getElementById('login-view');
