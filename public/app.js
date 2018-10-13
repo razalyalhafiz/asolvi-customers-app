@@ -40,14 +40,12 @@ window.addEventListener('load', function() {
   function getCustomers(accessToken) {
     if (!accessToken)
       return;
+    console.log(`access_token: ${accessToken}`);
 
-    const ENDPOINT = `${API_AUDIENCE}/customers`;  
-
-    fetch(ENDPOINT, { headers: { Authorization: "Bearer " + accessToken } })
+    fetch(`${API_AUDIENCE}/customers`, { headers: { Authorization: "Bearer " + accessToken } })
       .then(res => res.json())
       .then(response => {
         console.log('Success:', JSON.stringify(response));
-
         $("#tblCustomers").DataTable({
           data: response,
           columns: [
@@ -59,7 +57,6 @@ window.addEventListener('load', function() {
         });
       })
       .catch(error => console.error('Error:', error));
-
   }
 
   function logout() {
