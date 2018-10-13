@@ -75,16 +75,17 @@
                             },
                         })
                         .then(handleSuccess)
-                        .then(handleJSON)
+                        //.then(handleJSON)
                         .catch(handleError);
 
                         function handleSuccess(response) {
-                            return response.json();
+                            //return response.json();
+                            console.log(response);
                         }
 
-                        function handleJSON(json) {
-                            console.log(json);
-                        }
+                        // function handleJSON(json) {
+                        //     console.log(json);
+                        // }
 
                         function handleError(err) {
                             console.log(err);
