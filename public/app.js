@@ -67,7 +67,7 @@ window.addEventListener('load', function() {
             {
               targets: 1,
               render: function (data) {
-                return '<img src="' + data + '">'
+                return '<img class="avatar" src="' + data + '">'
               }
             }
           ],
