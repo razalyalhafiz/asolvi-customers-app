@@ -1,6 +1,6 @@
 window.addEventListener('load', function() {
   var content = document.querySelector('.content');
-  var loadingPage = document.getElementById("loading")
+  var loadingPage = document.getElementById("loading_page")
   var loadingDiv = document.getElementById("loading_div")
   content.style.display = 'block';
   loadingPage.style.display = "none";
