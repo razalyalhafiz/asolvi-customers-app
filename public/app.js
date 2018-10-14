@@ -70,14 +70,14 @@ window.addEventListener('load', function() {
             {
               text: "Hot",
               action: function (e, dt, node, config) {
-                dt.columns(4).search(this.text).draw();
+                dt.columns(4).search($(this).text()).draw();
               }
             },
             {   
               text: "Cool",
               action: function (e, dt, node, config) {
-                dt.columns(4).search(this.text).draw();
-                alert(this.text);
+                dt.columns(4).search($(this).text()).draw();
+                alert($(this).text());
               }
             }
           ]
