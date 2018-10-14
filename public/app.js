@@ -13,7 +13,8 @@ window.addEventListener('load', function() {
     scope: "openid profile"
   })
 
-  var loginStatus = document.querySelector('.container h4');
+  var loginStatus = document.querySelector(".container h4")
+  var message = document.querySelector('.container p');
 
   // buttons and event listeners
   var loginBtn = document.getElementById('qsLoginBtn');
@@ -124,11 +125,7 @@ window.addEventListener('load', function() {
       loginBtn.style.display = 'none';
       logoutBtn.style.display = 'inline-block';
       loginStatus.innerHTML = 'You are logged in!';
-      
-      let para = document.createElement("P");
-      let t = document.createTextNode("You are granted the <i>Sales</i> role, thus you may view the list of customers below.");
-      para.appendChild(t);
-      loginStatus.appendChild(para);
+      message.innerHTML = 'You are granted the <i>Sales</i> role, thus you may view the list of customers below.';
     } else {
       loginBtn.style.display = 'inline-block';
       logoutBtn.style.display = 'none';
