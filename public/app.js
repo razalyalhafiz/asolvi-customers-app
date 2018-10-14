@@ -1,8 +1,9 @@
 window.addEventListener('load', function() {
   var content = document.querySelector('.content');
-  var loadingSpinner = document.getElementById('loading');
+  var loadingPage = document.getElementById("loading")
+  var loadingDiv = document.getElementById("loading_div")
   content.style.display = 'block';
-  loadingSpinner.style.display = 'none';
+  loadingPage.style.display = "none";
 
   var webAuth = new window.auth0.WebAuth({
     domain: AUTH0_DOMAIN,
@@ -47,9 +48,7 @@ window.addEventListener('load', function() {
       .then(res => res.json())
       .then(response => {
         console.log('Success:', JSON.stringify(response));
-
-        let loadingTable = document.getElementById('loading_table');
-        loadingTable.style.display = "none";
+        loadingDiv.style.display = "none";
 
         $("#tblCustomers").DataTable({
           data: response,
@@ -142,6 +141,7 @@ window.addEventListener('load', function() {
       loginStatus.innerHTML = 'You are logged in!';
       message.innerHTML = 'You are granted the <i>Sales</i> role, thus you may view the list of customers below.';
     } else {
+      loadingDiv.style.display = "none";
       loginBtn.style.display = 'inline-block';
       logoutBtn.style.display = 'none';
       loginStatus.innerHTML =
