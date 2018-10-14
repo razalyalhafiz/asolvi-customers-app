@@ -10,7 +10,7 @@ window.addEventListener('load', function() {
     redirectUri: AUTH0_CALLBACK_URL,
     audience: API_AUDIENCE,
     responseType: "token id_token",
-    scope: "openid"
+    scope: "openid profile"
   })
 
   var loginStatus = document.querySelector('.container h4');
