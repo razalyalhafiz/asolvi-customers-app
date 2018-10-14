@@ -59,6 +59,14 @@ window.addEventListener('load', function() {
             { data: "status", title: "Status" },
             { data: "avatar", title: "Avatar" }
           ],
+          columnDefs: [
+            {
+              targets: 5,
+              render: function (data) {
+                return '<img src="' + data + '">'
+              }
+            }
+          ],
           dom: "Bfrtip",
           buttons: [
             {
