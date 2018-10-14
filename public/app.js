@@ -48,13 +48,17 @@ window.addEventListener('load', function() {
         console.log('Success:', JSON.stringify(response));
         $("#tblCustomers").DataTable({
           data: response,
+          paging: false,
+          searching: false,
+          info: false,
           columns: [
-            { data: "id" , title: "ID" },
+            { data: "id", title: "ID" },
             { data: "name", title: "Name" },
+            { data: "company", title: "Company" },
             { data: "status", title: "Status" },
-            { data: "avatar", title: "Avatar" },
+            { data: "avatar", title: "Avatar" }
           ]
-        });
+        })
       })
       .catch(error => console.error('Error:', error));
   }
