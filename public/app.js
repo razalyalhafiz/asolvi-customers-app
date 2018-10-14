@@ -1,9 +1,14 @@
 window.addEventListener('load', function() {
   var content = document.querySelector('.content');
-  var loadingPage = document.getElementById("loading_page")
+  var loadingPage = document.getElementById("loading_page");
   var loadingDiv = document.getElementById("loading_div")
+  var alert = document.getElementById("alert");
+  var alertHeading = document.querySelector(".alert-heading");
+  var alertMessage = document.querySelector(".alert-msg");
+
   content.style.display = 'block';
   loadingPage.style.display = "none";
+  alert.style.display = "none";
 
   var webAuth = new window.auth0.WebAuth({
     domain: AUTH0_DOMAIN,
@@ -14,7 +19,7 @@ window.addEventListener('load', function() {
     scope: "openid profile"
   })
 
-  var loginStatus = document.querySelector(".container h4")
+  var loginStatus = document.querySelector(".container h4");
   var message = document.querySelector('.container p');
 
   // buttons and event listeners
@@ -123,9 +128,10 @@ window.addEventListener('load', function() {
         getCustomers(authResult.accessToken);
       } else if (err) {
         console.log(err);
-        alert(
-          'Error: ' + err.error + '. Check the console for further details.'
-        );
+        
+        alert.style.display = "block";
+        alertHeading.innerHTML = err.error;
+        alertMessage.innerHTML = err.description;
       } else {
         var accessToken = localStorage.getItem('access_token');
         getCustomers(accessToken);
