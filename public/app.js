@@ -66,13 +66,17 @@ window.addEventListener('load', function() {
               text: "All",
               action: function(e, dt, node, config) {
                 dt.column(4).search("").draw();
-              },
+              }
+            },
+            {
               text: "Hot",
-              action: function(e, dt, node, config) {
+              action: function (e, dt, node, config) {
                 dt.column(4).search($(this).text).draw();
-              },
+              }
+            },
+            {
               text: "Cool",
-              action: function(e, dt, node, config) {
+              action: function (e, dt, node, config) {
                 dt.column(4).search($(this).text).draw();
               }
             }
