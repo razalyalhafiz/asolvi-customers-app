@@ -47,21 +47,25 @@ window.addEventListener('load', function() {
       .then(res => res.json())
       .then(response => {
         console.log('Success:', JSON.stringify(response));
+
+        let loadingTable = document.getElementById('loading_table');
+        loadingTable.style.display = "none";
+
         $("#tblCustomers").DataTable({
           data: response,
           paging: false,
           info: false,
           columns: [
             { data: "id", title: "ID" },
+            { data: "avatar", title: "Avatar" },
             { data: "name", title: "Name" },
             { data: "position", title: "Position" },
             { data: "company", title: "Company" },
-            { data: "status", title: "Status" },
-            { data: "avatar", title: "Avatar" }
+            { data: "status", title: "Status" }   
           ],
           columnDefs: [
             {
-              targets: 5,
+              targets: 1,
               render: function (data) {
                 return '<img src="' + data + '">'
               }
@@ -72,19 +76,19 @@ window.addEventListener('load', function() {
             {
               text: "All",
               action: function(e, dt, node, config) {
-                dt.search('').columns(4).search('').draw();
+                dt.search('').columns(5).search('').draw();
               }
             },
             {
               text: "Hot",
               action: function (e, dt, node, config) {
-                dt.columns(4).search('Hot').draw();
+                dt.columns(5).search('Hot').draw();
               }
             },
             {   
               text: "Cool",
               action: function (e, dt, node, config) {
-                dt.columns(4).search('Cool').draw();
+                dt.columns(5).search('Cool').draw();
               }
             }
           ]
