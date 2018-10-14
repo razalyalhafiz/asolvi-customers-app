@@ -128,10 +128,10 @@ window.addEventListener('load', function() {
         getCustomers(authResult.accessToken);
       } else if (err) {
         console.log(err);
-        
+
         alert.style.display = "block";
-        alertHeading.innerHTML = err.error;
-        alertMessage.innerHTML = err.description;
+        alertHeading.innerHTML = `Error: ${err.error}`;
+        alertMessage.innerHTML = err.errorDescription;
       } else {
         var accessToken = localStorage.getItem('access_token');
         getCustomers(accessToken);
