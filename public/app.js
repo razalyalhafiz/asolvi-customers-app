@@ -80,7 +80,8 @@ window.addEventListener('load', function() {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         loginBtn.style.display = "none";
-
+        
+        console.log('Auth Result: ' + JSON.stringify(authResult))
         setSession(authResult);
         getCustomers(authResult.accessToken);
       } else if (err) {
