@@ -54,9 +54,27 @@ window.addEventListener('load', function() {
           columns: [
             { data: "id", title: "ID" },
             { data: "name", title: "Name" },
+            { data: "position", title: "Position" },
             { data: "company", title: "Company" },
             { data: "status", title: "Status" },
             { data: "avatar", title: "Avatar" }
+          ],
+          dom: "Bfrtip",
+          buttons: [
+            {
+              text: "All",
+              action: function(e, dt, node, config) {
+                dt.column(4).search("").draw();
+              },
+              text: "Hot",
+              action: function(e, dt, node, config) {
+                dt.column(4).search($(this).text).draw();
+              },
+              text: "Cool",
+              action: function(e, dt, node, config) {
+                dt.column(4).search($(this).text).draw();
+              }
+            }
           ]
         })
       })
@@ -97,15 +115,20 @@ window.addEventListener('load', function() {
         var accessToken = localStorage.getItem('access_token');
         getCustomers(accessToken);
       }
-      displayButtons();
+      toggleView();
     });
   }
 
-  function displayButtons() {
+  function toggleView() {
     if (isAuthenticated()) {
       loginBtn.style.display = 'none';
       logoutBtn.style.display = 'inline-block';
       loginStatus.innerHTML = 'You are logged in!';
+      
+      let para = document.createElement("P");
+      let t = document.createTextNode("You are granted the <i>Sales</i> role, thus you may view the list of customers below.");
+      para.appendChild(t);
+      loginStatus.appendChild(para);
     } else {
       loginBtn.style.display = 'inline-block';
       logoutBtn.style.display = 'none';
