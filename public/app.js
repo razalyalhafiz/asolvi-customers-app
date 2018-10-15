@@ -5,7 +5,7 @@ window.addEventListener("load", function() {
   var alert = document.getElementById("alert")
   var alertHeading = document.querySelector(".alert-heading")
   var alertMessage = document.querySelector(".alert-msg")
-  var loginStatus = document.querySelector(".main-view h4")
+  var loginStatus = document.querySelector("#main-view h4")
   var message = document.querySelector(".main-view p")
   var loginBtn = document.getElementById("btnLogin")
   var logoutBtn = document.getElementById("btnLogout")
