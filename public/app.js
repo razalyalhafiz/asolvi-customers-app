@@ -144,13 +144,13 @@ window.addEventListener('load', function() {
     });
   }
 
-  function toggleView(isLoggedIn, message) {
+  function toggleView(isLoggedIn, messageText) {
     loadingDiv.style.display = "none"
     if (isLoggedIn) {
       loginBtn.style.display = "none"
       logoutBtn.style.display = "inline-block"
       loginStatus.innerHTML = "You are logged in!"
-      message.innerHTML = message;
+      message.innerHTML = messageText
     } else {
       loginBtn.style.display = "inline-block"
       logoutBtn.style.display = "none"
