@@ -118,40 +118,43 @@ window.addEventListener('load', function() {
   }
 
   function handleAuthentication() {
+    loginBtn.style.display = 'inline-block';
+    logoutBtn.style.display = 'none';
+    loginStatus.innerHTML = 'You are not logged in! Please log in to continue.';
+
     webAuth.parseHash(function(err, authResult) {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = '';
-        loginBtn.style.display = "none";
-        
-        console.log('Auth Result: ' + JSON.stringify(authResult))
+        console.log('Auth Result: ' + JSON.stringify(authResult));
         setSession(authResult);
         getCustomers(authResult.accessToken);
+        toggleView(true, "You are granted the <i>sales</i> role, thus you may view the list of customers below.");
+      } else if (isAuthenticated()) {
+        let accessToken = localStorage.getItem('access_token');
+        getCustomers(accessToken);
+        toggleView(true, "You are granted the <i>sales</i> role, thus you may view the list of customers below.");
       } else if (err) {
-        console.log(err);
-
+        console.log(err);       
+        toggleView(true, "You are granted the <i>general</i> role, thus you are prohibited to view the list of customers.");
         alert.style.display = "block";
         alertHeading.innerHTML = `Error: ${err.error}`;
         alertMessage.innerHTML = err.errorDescription;
       } else {
-        var accessToken = localStorage.getItem('access_token');
-        getCustomers(accessToken);
+        toggleView(false);
       }
-      toggleView();
     });
   }
 
-  function toggleView() {
-    if (isAuthenticated()) {
-      loginBtn.style.display = 'none';
-      logoutBtn.style.display = 'inline-block';
-      loginStatus.innerHTML = 'You are logged in!';
-      message.innerHTML = 'You are granted the <i>Sales</i> role, thus you may view the list of customers below.';
+  function toggleView(isLoggedIn, message) {
+    if (isLoggedIn) {
+      loginBtn.style.display = "none"
+      logoutBtn.style.display = "inline-block"
+      loginStatus.innerHTML = "You are logged in!"
+      message.innerHTML = message;
     } else {
-      loadingDiv.style.display = "none";
-      loginBtn.style.display = 'inline-block';
-      logoutBtn.style.display = 'none';
-      loginStatus.innerHTML =
-        'You are not logged in! Please log in to continue.';
+      loadingDiv.style.display = "none"
+      loginBtn.style.display = "inline-block"
+      logoutBtn.style.display = "none"
+      loginStatus.innerHTML = "You are not logged in! Please log in to continue."
     }
   }
 
