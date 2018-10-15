@@ -1,7 +1,7 @@
 {
-  "name": "custom-login",
-  "version": "0.0.0",
-  "description": "",
+  "name": "asolvi-customers-app",
+  "version": "1.0.0",
+  "description": "Web app to initiate Auth0 login & view customers",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -14,8 +14,5 @@
     "bootstrap": "^3.3.7",
     "ejs": "^2.6.1",
     "express": "^4.16.4"
-  },
-  "devDependencies": {
-    "auth0-quickstarts-tester": "0.1.0"
   }
 }
