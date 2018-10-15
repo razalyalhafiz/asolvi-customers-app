@@ -134,18 +134,19 @@ window.addEventListener('load', function() {
         toggleView(true, "You are granted the <i>sales</i> role, thus you may view the list of customers below.");
       } else if (err) {
         console.log(err);       
+        loadingDiv.style.display = "none"
         toggleView(true, "You are granted the <i>general</i> role, thus you are prohibited to view the list of customers.");
         alert.style.display = "block";
         alertHeading.innerHTML = `Error: ${err.error}`;
         alertMessage.innerHTML = err.errorDescription;
       } else {
+        loadingDiv.style.display = "none"
         toggleView(false);
       }
     });
   }
 
   function toggleView(isLoggedIn, messageText) {
-    loadingDiv.style.display = "none"
     if (isLoggedIn) {
       loginBtn.style.display = "none"
       logoutBtn.style.display = "inline-block"
